@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis XV - Danna</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- BIENVENIDA -->
+  <section class="hero">
+    <div class="contenido">
+      <img src="images/quince1.jpg">
+      <h2>Danna</h2>
+      <div class="mensaje">
+        <p>"Con la bendición de mis padres</p>
+        <p>Te invito a celebrar conmigo este día tan especial"</p>
+      </div>
+      <audio controls loop autoplay>
+        <source src="music/cinderella.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </section>
+
+  <section class="cuentaRegresiva">
+    <div class="container-title-cuenta">
+      <span class="icon-time"></span>
+      <h2>Mis XV años</h2>
+      <span class="icon-time"></span>
+    </div>
+    <div id="contador"></div>
+  </section>
+
+  <section class="evento">
+    <div class="card">
+      <h3>Ceremonia</h3>
+      <div class="cont-infoCeremonia">
+        <div class="infoCeremonia">
+          <div class="iconFecha"></div>
+          <div class="textInfo">
+            <span>S&aacute;bado 15 de marzo del 2026</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconHora"></div>
+          <div class="textInfo">
+            <span>17:00 hrs</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconLugar"></div>
+          <div class="textInfo">
+            <span>Iglesia de San Antonio de Padua</span>
+          </div>
+        </div>
+        <a class="btn-ubicacion" href="#">
+          <span class="iconPunto"></span>
+          <span class="text-btnUbicacion">
+            ¿C&oacute;mo llegar a la ceremonia?
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recepci&oacute;n</h3>
+      <div class="cont-infoCeremonia">
+        <div class="infoCeremonia">
+          <div class="iconFecha"></div>
+          <div class="textInfo">
+            <span>S&aacute;bado 15 de marzo del 2026</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconHora"></div>
+          <div class="textInfo">
+            <span>19:00 hrs</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconLugar"></div>
+          <div class="textInfo">
+            <span>Georgina Sal&oacute;n de eventos</span>
+          </div>
+        </div>
+        <a class="btn-ubicacion" href="https://maps.app.goo.gl/EP89Ne4nNf1Te4BcA">
+          <span class="iconPunto"></span>
+          <span class="text-btnUbicacion">
+            ¿C&oacute;mo llegar a la recepci&oacute;n?
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dresscode">
+    <div class="container-title-dressCode">
+      <span class="icon-dres"></span>
+      <h2>Dress Code</h2>
+      <span class="icon-dress"></span>
+    </div>
+    <span class="iconDressCode"></span>
+    <span>Formal elegante</span>
+    <span class="recomendado"> Colores recomendados</span>
+    <div class="colores">
+      <span class="color1"></span>
+      <span class="color2"></span>
+      <span class="color3"></span>
+    </div>
+  </section>
+
+  <section class="title-mesa">
+    <div class="container-title-mesa">
+      <span class="icon-mesa"></span>
+      <h2>Mesa de Regalo</h2>
+      <span class="icon-mesa"></span>
+    </div>
+    <div class="text-regalo">
+      <span>
+        Tu presencia es nuestro mayor regalo, pero si deseas hacernos un obsequio ponemos a tu disposición nuestras
+        sugerencias
+      </span>
+    </div>
+  </section>
+  <section class="mesa">
+    <div class="card">
+      <h3>Regalo</h3>
+      <div class="cont-infoCeremonia">
+        <div class="infoCeremonia">
+          <div class="iconRegalo"></div>
+          <div class="textInfo">
+            <span>C&oacute;digo: <strong>A12345</strong></span>
+          </div>
+        </div>
+        <a class="btn-ubicacion" href="#">
+          <span class="iconIrA"></span>
+          <span class="text-btnUbicacion">
+            Ir a mesa de regalo
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Datos Bancarios</h3>
+      <div class="cont-infoCeremonia">
+        <div class="infoCeremonia">
+          <div class="iconUsuario"></div>
+          <div class="textInfo">
+            <span>Titular: Danna Per&eacute;z Per&eacute;z</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconCard"></div>
+          <div class="textInfo">
+            <span>No. de cuenta: 1234567890</span>
+          </div>
+        </div>
+        <div class="infoCeremonia">
+          <div class="iconCard"></div>
+          <div class="textInfo">
+            <span>CLABE: 1234567890</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="rsvp" id="rsvp">
+    <h2>Confirmar Asistencia</h2>
+    <form id="rsvpForm">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <button type="submit">Confirmo asistencia</button>
+    </form>
+
+    <div id="qrContainer"></div>
+    <button id="descargarQR" style="display:none;">Descargar QR</button>
+  </section>
+
+  <script src="js/script.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</body>
+
+</html>

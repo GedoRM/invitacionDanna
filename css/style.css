@@ -1,0 +1,590 @@
+:root {
+  --azul-serenity: rgb(152, 183, 212);
+  --azul-medianoche: rgb(12, 12, 36);
+  --plata: rgb(192, 192, 192);
+  --blanco-perla: rgb(245, 240, 235);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--blanco-perla);
+  width: 70%;
+  margin: auto;
+}
+
+section {
+  text-align: center;
+  margin-bottom: 30px !important;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  color: var(--plata);
+  width: max-content;
+  margin: auto;
+  position: relative;
+
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: 95vh;
+    }
+
+    .mensaje {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      line-height: 0.7;
+      bottom: 18%;
+      z-index: 1;
+      text-align: center;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      p {
+        font-size: 24px;
+        font-family: "Playfair Display", serif;
+        color: var(--azul-medianoche);
+        position: relative;
+        margin: 0;
+      }
+    }
+
+    h2 {
+      position: absolute;
+      font-size: 48px;
+      font-family: "Great Vibes", cursive;
+      margin: 0;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--azul-medianoche);
+      z-index: 1;
+    }
+
+    audio {
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      z-index: 1;
+    }
+  }
+
+  .contenido::after {
+    content: "";
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top,
+        rgba(245, 240, 235, 1) 22%,
+        rgba(152, 182, 235, 0) 86%);
+  }
+}
+
+.cuentaRegresiva {
+  width: max-content;
+  margin: auto;
+  position: relative;
+
+  .container-title-cuenta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin-bottom: 15px;
+
+    span {
+      background-image: url("../images/carruaje.png");
+      width: 80px;
+      height: 80px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    h2 {
+      font-size: 45px;
+      font-family: "Great Vibes", cursive;
+      margin: 0;
+      color: var(--azul-medianoche);
+      z-index: 1;
+    }
+  }
+
+  #contador {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: max-content;
+    gap: 40px;
+    margin: auto;
+
+    .cont-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+
+      span {
+        font-family: "Great Vibes", normal;
+        color: var(--azul-serenity);
+        font-size: 46px;
+      }
+    }
+  }
+}
+
+/* CARDS */
+.evento,
+.mesa {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+
+  .card {
+    background-color: var(--blanco-perla);
+    padding: 35px;
+    min-width: 250px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--azul-medianoche);
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .cont-infoCeremonia {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .infoCeremonia {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .iconFecha {
+          background-image: url("../images/fecha.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+        }
+
+        .iconHora {
+          background-image: url("../images/reloj.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+        }
+
+        .iconLugar {
+          background-image: url("../images/mapa.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+        }
+
+        .iconRegalo {
+          background-image: url("../images/regalo.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 30px;
+          height: 30px;
+        }
+
+        .iconUsuario {
+          background-image: url("../images/avatar.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 30px;
+          height: 30px;
+        }
+
+        .iconCard {
+          background-image: url("../images/tarjeta.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 30px;
+          height: 30px;
+        }
+
+        .textInfo {
+          span {
+            font-family: "Playfair Display", serif;
+            color: var(--azul-serenity);
+            font-size: 16px;
+            font-weight: 800;
+          }
+        }
+      }
+
+      .btn-ubicacion {
+        border-radius: 8px;
+        padding: 8px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--azul-serenity);
+        border: 1px solid var(--azul-medianoche);
+        text-decoration: none;
+        width: auto;
+
+        .iconPunto {
+          background-image: url("../images/punto.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+        }
+
+        .iconIrA {
+          background-image: url("../images/ir-a.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: 20px;
+          height: 20px;
+        }
+
+        .text-btnUbicacion {
+          font-family: "Playfair Display", serif;
+          color: var(--azul-medianoche);
+          font-size: 16px;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}
+
+.dresscode {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+
+  .container-title-dressCode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin-bottom: 15px;
+
+    span {
+      background-image: url("../images/zapatilla.png");
+      width: 80px;
+      height: 80px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    h2 {
+      font-size: 45px;
+      font-family: "Great Vibes", cursive;
+      margin: 0;
+      color: var(--azul-medianoche);
+      z-index: 1;
+    }
+  }
+
+  .iconDressCode {
+    background-image: url("../images/dresscode.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+
+  span {
+    font-family: "Playfair Display", serif;
+    color: var(--azul-medianoche);
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .recomendado {
+    font-family: "Great Vibes", cursive;
+    color: var(--azul-serenity);
+    font-size: 32px;
+    margin-top: 20px;
+    border-top: 1px solid #c0c0c0;
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .colores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+
+    span {
+      width: 30px;
+      height: 30px;
+      border-radius: 20px;
+    }
+
+    .color1 {
+      background-color: var(--azul-medianoche);
+    }
+
+    .color2 {
+      background-color: var(--azul-serenity);
+    }
+
+    .color3 {
+      background-color: var(--plata);
+    }
+  }
+}
+
+.title-mesa {
+  width: 100%;
+  padding: 0 15px;
+
+  .container-title-mesa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin-bottom: 15px;
+
+    span {
+      background-image: url("../images/cenicienta.png");
+      width: 80px;
+      height: 80px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    h2 {
+      font-size: 45px;
+      font-family: "Great Vibes", cursive;
+      margin: 0;
+      color: var(--azul-medianoche);
+      z-index: 1;
+    }
+  }
+
+  .text-regalo {
+    display: flex;
+    margin: auto;
+    width: 600px;
+    span {
+      font-size: 24px;
+      font-family: "Playfair Display", serif;
+      color: var(--azul-medianoche);
+      position: relative;
+      margin: 0;
+    }
+  }
+}
+
+/* RSVP */
+.rsvp form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+.rsvp h2{
+  font-size: 24px;
+      font-family: "Playfair Display", serif;
+      color: var(--azul-medianoche);
+      position: relative;
+      margin: 0;
+}
+.rsvp input,
+.rsvp select {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.rsvp button {
+  background: var(--azul-medianoche);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+@media (min-width: 320px) and (max-width: 1000px) {
+  body {
+    width: 100%;
+
+    .hero {
+      width: 100%;
+      height: 100vh;
+
+      @media (min-width: 700px) {
+        padding: 0 15px;
+      }
+
+      .contenido {
+        img {
+          height: 100vh;
+          width: 100%;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+
+        h2 {
+          font-size: clamp(32px, 6vw, 42px);
+        }
+
+        .mensaje {
+          width: 100%;
+          padding: 0 15px;
+          bottom: 10%;
+
+          p {
+            font-size: clamp(20px, 2vw, 28px);
+            line-height: 1;
+          }
+        }
+
+        audio {
+          bottom: 0;
+        }
+      }
+
+      .contenido::after {
+        bottom: 0;
+        height: 35%;
+      }
+    }
+
+    .cuentaRegresiva {
+      padding: 0 15px;
+      width: 100%;
+
+      .container-title-cuenta {
+        gap: 15px;
+
+        h2 {
+          font-size: clamp(32px, 6vw, 42px);
+        }
+
+        span {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      #contador {
+        gap: 0;
+        width: 100%;
+        flex-wrap: nowrap;
+
+        .cont-info {
+          span {
+            font-size: clamp(32px, 6vw, 42px);
+          }
+        }
+      }
+    }
+
+    .evento,
+    .mesa {
+      padding: 0 15px;
+
+      .card {
+        .cont-infoCeremonia {
+          .infoCeremonia {
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    .dresscode {
+      width: 100%;
+      padding: 0 15px;
+
+      .container-title-dressCode {
+        gap: 15px;
+
+        h2 {
+          font-size: clamp(32px, 6vw, 42px);
+        }
+
+        span {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      .iconDressCode {
+        width: 150px;
+        height: 150px;
+      }
+
+      span {
+        font-size: clamp(20px, 6vw, 32px);
+      }
+
+      .recomendado {
+        font-size: clamp(24px, 6vw, 32px);
+      }
+    }
+
+    .title-mesa {
+      .container-title-mesa {
+        gap: 15px;
+
+        h2 {
+          font-size: clamp(32px, 6vw, 42px);
+        }
+
+        span {
+          width: 45px;
+          height: 70px;
+        }
+      }
+
+      .text-regalo {
+        display: flex;
+        width: 100%;
+        span {
+          font-size: clamp(18px, 2vw, 24px);
+        }
+      }
+    }
+
+    .mesa {
+      width: 100%;
+      padding: 0 15px;
+    }
+
+    .rsvp {
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+}
