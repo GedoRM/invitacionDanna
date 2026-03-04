@@ -21,7 +21,7 @@ exports.handler = async (event) => {
         numero_veces_usado: 0
       }
     ]);
-    
+
   if (error) {
     return {
       statusCode: 500,
@@ -29,14 +29,12 @@ exports.handler = async (event) => {
     };
   }
 
-    const linkQR = `${window.location.origin}/checkin.html?codigo=${codigo}`;
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        mensaje: "Invitación creada",
-        codigo: codigo,
-        link: linkQR
-      })
-    };
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      mensaje: "Reserva creada",
+      id: id,
+      link: `https://xv-danna.blueplanners.com.mx/netlify/views/form/?id=${id}`
+    })
+  };
 };
