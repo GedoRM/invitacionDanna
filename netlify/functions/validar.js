@@ -11,7 +11,7 @@ exports.handler = async (event) => {
 
   // Buscar invitación por codigo_invitacion
   const { data: invitacion, error } = await supabase
-    .from('invitaciones')
+    .from('invitacion')
     .select('*')
     .eq('codigo_invitacion', codigo)
     .single();
