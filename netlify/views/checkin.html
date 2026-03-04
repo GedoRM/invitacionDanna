@@ -54,8 +54,8 @@ function mostrarResultado(data) {
     resultado.className = "ok";
     resultado.innerHTML = `
       ${data.mensaje} <br>
-      "FAMILIA: " + ${data.nombre} <br>
-      "PASES:" + ${data.usados} / ${data.permitidos}
+      FAMILIA: ${data.nombre} <br>
+      PASES: ${data.usados} / ${data.permitidos}
     `;
   } else {
     resultado.className = "error";
