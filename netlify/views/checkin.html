@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Check-In</title>
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: black;
+      color: white;
+      text-align: center;
+    }
+
+    #reader {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 22px;
+      padding: 20px;
+    }
+
+    .ok {
+      background: green;
+    }
+
+    .error {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Escanear Invitación</h1>
+
+<div id="reader"></div>
+<div id="resultado"></div>
+
+<script>
+
+const resultado = document.getElementById("resultado");
+
+function mostrarResultado(data) {
+
+  if (data.estado === "ok") {
+    resultado.className = "ok";
+    resultado.innerHTML = `
+      ✔ ${data.mensaje} <br>
+      ${data.nombre} <br>
+      ${data.usados} / ${data.permitidos}
+    `;
+  } else {
+    resultado.className = "error";
+    resultado.innerHTML = `
+      ❌ ${data.mensaje} <br>
+      ${data.nombre ? data.nombre : ""}
+    `;
+  }
+
+  setTimeout(() => {
+    resultado.className = "";
+    resultado.innerHTML = "";
+  }, 3000);
+}
+
+async function validarCodigo(qrText) {
+
+  // Extraer ID del link
+  const url = new URL(qrText);
+  const id = url.searchParams.get("codigo_invitacion");
+
+  if (!id) {
+    mostrarResultado({ estado: "error", mensaje: "QR inválido" });
+    return;
+  }
+
+  const res = await fetch('/.netlify/functions/validar', {
+    method: 'POST',
+    body: JSON.stringify({ id })
+  });
+
+  const data = await res.json();
+
+  mostrarResultado(data);
+}
+
+// Iniciar lector
+const html5QrCode = new Html5Qrcode("reader");
+
+html5QrCode.start(
+  { facingMode: "environment" },
+  {
+    fps: 10,
+    qrbox: 250
+  },
+  qrCodeMessage => {
+    validarCodigo(qrCodeMessage);
+  }
+);
+
+</script>
+
+</body>
+</html>

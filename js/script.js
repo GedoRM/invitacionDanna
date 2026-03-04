@@ -52,3 +52,14 @@ document.getElementById("descargarQR").addEventListener("click", function() {
   link.href = canvasQR.toDataURL("images/png");
   link.click();
 });
+
+async function validarQR(id) {
+
+  const res = await fetch('/.netlify/functions/validar', {
+    method: 'POST',
+    body: JSON.stringify({ id })
+  });
+
+  const data = await res.json();
+  alert(data.mensaje);
+}

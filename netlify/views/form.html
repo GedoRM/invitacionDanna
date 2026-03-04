@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formReserva">
+  <input type="text" id="nombre" placeholder="Nombre" required>
+  <input type="number" id="pases" placeholder="Pases" required>
+  <button type="submit">Crear Reserva</button>
+</form>
+<div id="qrContainer"></div>
+
+<script>
+document.getElementById("formReserva").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const pases = document.getElementById("pases").value;
+
+  const res = await fetch('/.netlify/functions/crear-reserva', {
+    method: 'POST',
+    body: JSON.stringify({ nombre, pases })
+  });
+
+  const data = await res.json();
+
+  const id = data.id;
+
+  // Link que irá dentro del QR
+  const link = `http://localhost:8888/netlify/views/form/?id=${id}`;
+
+  // Generar QR
+  const qrContainer = document.getElementById("qrContainer");
+  qrContainer.innerHTML = "";
+
+  QRCode.toCanvas(link, { width: 200 }, function (error, canvas) {
+    if (error) console.error(error);
+    qrContainer.appendChild(canvas);
+  });
+
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</body>
+</html>
