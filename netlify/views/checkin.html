@@ -53,14 +53,14 @@ function mostrarResultado(data) {
   if (data.estado === "ok") {
     resultado.className = "ok";
     resultado.innerHTML = `
-      ✔ ${data.mensaje} <br>
-      ${data.nombre} <br>
-      ${data.usados} / ${data.permitidos}
+      ${data.mensaje} <br>
+      "FAMILIA: " + ${data.nombre} <br>
+      "PASES:" + ${data.usados} / ${data.permitidos}
     `;
   } else {
     resultado.className = "error";
     resultado.innerHTML = `
-      ❌ ${data.mensaje} <br>
+      ${data.mensaje} <br>
       ${data.nombre ? data.nombre : ""}
     `;
   }
@@ -68,7 +68,7 @@ function mostrarResultado(data) {
   setTimeout(() => {
     resultado.className = "";
     resultado.innerHTML = "";
-  }, 3000);
+  }, 5000);
 }
 
 async function validarCodigo(qrText) {
@@ -111,17 +111,14 @@ function iniciarScanner() {
       if (escaneoBloqueado) return;
 
       escaneoBloqueado = true;
-
-      // 🛑 Detener cámara
       await html5QrCode.stop();
 
       await validarCodigo(qrCodeMessage);
 
-      // ⏳ Esperar 3 segundos antes de permitir otro pase
       setTimeout(() => {
         escaneoBloqueado = false;
-        iniciarScanner(); // 🔄 Reactivar cámara
-      }, 3000);
+        iniciarScanner();
+      }, 5000);
 
     }
   );
