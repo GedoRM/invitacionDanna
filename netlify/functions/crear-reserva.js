@@ -21,7 +21,7 @@ exports.handler = async (event) => {
         numero_veces_usado: 0
       }
     ]);
-
+    
   if (error) {
     return {
       statusCode: 500,
@@ -29,7 +29,7 @@ exports.handler = async (event) => {
     };
   }
 
-    const linkQR = `${process.env.URL}/checkin.html?codigo=${codigo}`;
+    const linkQR = `${window.location.origin}/checkin.html?codigo=${codigo}`;
 
     return {
       statusCode: 200,

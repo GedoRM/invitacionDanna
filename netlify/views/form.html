@@ -30,7 +30,7 @@ document.getElementById("formReserva").addEventListener("submit", async (e) => {
   const id = data.id;
 
   // Link que irá dentro del QR
-  const link = `http://localhost:8888/netlify/views/form/?id=${id}`;
+const link = `${window.location.origin}/checkin.html?codigo=${id}`;;
 
   // Generar QR
   const qrContainer = document.getElementById("qrContainer");
