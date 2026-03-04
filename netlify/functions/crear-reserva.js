@@ -29,12 +29,14 @@ exports.handler = async (event) => {
     };
   }
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      mensaje: "Reserva creada",
-      id: id,
-      link: `https://tudominio.com/?id=${id}`
-    })
-  };
+    const linkQR = `${process.env.URL}/checkin.html?codigo=${codigo}`;
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        mensaje: "Invitación creada",
+        codigo: codigo,
+        link: linkQR
+      })
+    };
 };

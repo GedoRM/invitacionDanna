@@ -7,16 +7,16 @@ const supabase = createClient(
 
 exports.handler = async (event) => {
 
-  const { id } = JSON.parse(event.body);
+  const { codigo } = JSON.parse(event.body);
 
-  // Buscar reserva
-  const { data: reserva, error } = await supabase
-    .from('invitacion')
+  // Buscar invitación por codigo_invitacion
+  const { data: invitacion, error } = await supabase
+    .from('invitaciones')
     .select('*')
-    .eq('id_invitacion', id)
+    .eq('codigo_invitacion', codigo)
     .single();
 
-  if (error || !reserva) {
+  if (error || !invitacion) {
     return {
       statusCode: 404,
       body: JSON.stringify({
@@ -26,27 +26,27 @@ exports.handler = async (event) => {
     };
   }
 
-  // Verificar disponibilidad
-  if (reserva.pases_usados >= reserva.pases_permitidos) {
+  // Validar disponibilidad
+  if (invitacion.numero_veces_usado >= invitacion.numero_pases) {
     return {
       statusCode: 400,
       body: JSON.stringify({
         estado: "agotado",
         mensaje: "Pases agotados",
-        nombre: reserva.nombre,
-        usados: reserva.pases_usados,
-        permitidos: reserva.pases_permitidos
+        nombre: invitacion.nombre_familia,
+        usados: invitacion.numero_veces_usado,
+        permitidos: invitacion.numero_pases
       })
     };
   }
 
-  // Descontar 1 pase
+  // Incrementar uso (MUY IMPORTANTE)
   const { error: updateError } = await supabase
-    .from('reservas')
+    .from('invitaciones')
     .update({
-      pases_usados: reserva.pases_usados + 1
+      numero_veces_usado: invitacion.numero_veces_usado + 1
     })
-    .eq('id', id);
+    .eq('codigo_invitacion', codigo);
 
   if (updateError) {
     return {
@@ -63,9 +63,9 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       estado: "ok",
       mensaje: "Acceso permitido",
-      nombre: reserva.nombre,
-      usados: reserva.pases_usados + 1,
-      permitidos: reserva.pases_permitidos
+      nombre: invitacion.nombre_familia,
+      usados: invitacion.numero_veces_usado + 1,
+      permitidos: invitacion.numero_pases
     })
   };
 };

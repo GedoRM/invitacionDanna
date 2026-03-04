@@ -71,22 +71,23 @@ function mostrarResultado(data) {
 
 async function validarCodigo(qrText) {
 
-  // Extraer ID del link
   const url = new URL(qrText);
-  const id = url.searchParams.get("codigo_invitacion");
+  const codigo = url.searchParams.get("codigo");
 
-  if (!id) {
+  if (!codigo) {
     mostrarResultado({ estado: "error", mensaje: "QR inválido" });
     return;
   }
 
   const res = await fetch('/.netlify/functions/validar', {
     method: 'POST',
-    body: JSON.stringify({ id })
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ codigo })
   });
 
   const data = await res.json();
-
   mostrarResultado(data);
 }
 
