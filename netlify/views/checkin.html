@@ -100,10 +100,11 @@ async function validarCodigo(qrText) {
 function iniciarScanner() {
 
   html5QrCode = new Html5Qrcode("reader");
+   const size = readerElement.offsetWidth; //
 
   html5QrCode.start(
     { facingMode: "environment" },
-    { fps: 10, qrbox: 250 },
+    { fps: 10, qrbox: size },
     async (qrCodeMessage) => {
 
       if (escaneoBloqueado) return;
