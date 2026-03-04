@@ -16,7 +16,7 @@
     }
 
     #reader {
-      width: 300px;
+      width: 80%;
       margin: 20px auto;
     }
 
@@ -45,6 +45,8 @@
 <script>
 
 const resultado = document.getElementById("resultado");
+let html5QrCode;
+let escaneoBloqueado = false;
 
 function mostrarResultado(data) {
 
@@ -71,8 +73,14 @@ function mostrarResultado(data) {
 
 async function validarCodigo(qrText) {
 
-  const url = new URL(qrText);
-  const codigo = url.searchParams.get("codigo");
+  let codigo;
+
+  try {
+    const url = new URL(qrText);
+    codigo = url.searchParams.get("codigo");
+  } catch {
+    codigo = qrText.trim();
+  }
 
   if (!codigo) {
     mostrarResultado({ estado: "error", mensaje: "QR inválido" });
@@ -81,9 +89,7 @@ async function validarCodigo(qrText) {
 
   const res = await fetch('/.netlify/functions/validar', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ codigo })
   });
 
@@ -91,19 +97,35 @@ async function validarCodigo(qrText) {
   mostrarResultado(data);
 }
 
-// Iniciar lector
-const html5QrCode = new Html5Qrcode("reader");
+function iniciarScanner() {
 
-html5QrCode.start(
-  { facingMode: "environment" },
-  {
-    fps: 10,
-    qrbox: 250
-  },
-  qrCodeMessage => {
-    validarCodigo(qrCodeMessage);
-  }
-);
+  html5QrCode = new Html5Qrcode("reader");
+
+  html5QrCode.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    async (qrCodeMessage) => {
+
+      if (escaneoBloqueado) return;
+
+      escaneoBloqueado = true;
+
+      // 🛑 Detener cámara
+      await html5QrCode.stop();
+
+      await validarCodigo(qrCodeMessage);
+
+      // ⏳ Esperar 3 segundos antes de permitir otro pase
+      setTimeout(() => {
+        escaneoBloqueado = false;
+        iniciarScanner(); // 🔄 Reactivar cámara
+      }, 3000);
+
+    }
+  );
+}
+
+iniciarScanner();
 
 </script>
 
