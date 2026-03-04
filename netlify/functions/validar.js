@@ -42,7 +42,7 @@ exports.handler = async (event) => {
 
   // Incrementar uso (MUY IMPORTANTE)
   const { error: updateError } = await supabase
-    .from('invitaciones')
+    .from('invitacion')
     .update({
       numero_veces_usado: invitacion.numero_veces_usado + 1
     })
