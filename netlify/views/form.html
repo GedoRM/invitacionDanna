@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Generador de invitaciones</title>
+    <link rel="stylesheet" href="../../css/styleForm.css">
 </head>
 <body>
     <form id="formReserva">
@@ -12,6 +13,19 @@
   <button type="submit">Crear Reserva</button>
 </form>
 <div id="qrContainer"></div>
+
+<table border="1" width="100%" id="tablaInvitaciones">
+  <thead>
+    <tr>
+      <th>Familia</th>
+      <th>Código</th>
+      <th>Pases</th>
+      <th>Usados</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
 <script>
 document.getElementById("formReserva").addEventListener("submit", async (e) => {
@@ -41,7 +55,38 @@ const link = `${window.location.origin}/checkin.html?codigo=${id}`;;
     qrContainer.appendChild(canvas);
   });
 
+  cargarInvitaciones();
+
 });
+
+async function cargarInvitaciones() {
+  
+
+  const res = await fetch('/.netlify/functions/listar-invitaciones');
+  const data = await res.json();
+
+  const tbody = document.querySelector("#tablaInvitaciones tbody");
+  tbody.innerHTML = "";
+
+  data.forEach(inv => {
+
+    const fila = `
+      <tr>
+        <td>${inv.nombre_familia}</td>
+        <td>${inv.codigo_invitacion}</td>
+        <td>${inv.numero_pases}</td>
+        <td>${inv.numero_veces_usado}</td>
+        <td>${inv.status}</td>
+      </tr>
+    `;
+
+    tbody.innerHTML += fila;
+
+  });
+
+}
+
+cargarInvitaciones();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </body>

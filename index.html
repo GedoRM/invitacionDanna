@@ -173,20 +173,94 @@
   </section>
 
 
-  <section class="rsvp" id="rsvp">
-    <h2>Confirmar Asistencia</h2>
-    <form id="rsvpForm">
-      <input type="text" id="nombre" placeholder="Tu nombre" required>
-      <button type="submit">Confirmo asistencia</button>
-    </form>
+<!-- BOTÓN FLOTANTE -->
+<button id="btnRsvp">Confirmar asistencia</button>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="cerrar">&times;</span>
+
+    <h2>Ingresa tu código</h2>
+
+    <input type="text" id="codigoInput" placeholder="Código de invitación">
+    <button id="confirmarCodigo">Confirmar</button>
 
     <div id="qrContainer"></div>
-    <button id="descargarQR" style="display:none;">Descargar QR</button>
-  </section>
+  </div>
+</div>
 
   <script src="js/script.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<script>
+const modal = document.getElementById("modal");
+const btn = document.getElementById("btnRsvp");
+const cerrar = document.getElementById("cerrar");
+const qrContainer = document.getElementById("qrContainer");
+
+// Abrir modal
+btn.onclick = () => modal.style.display = "block";
+
+// Cerrar modal
+cerrar.onclick = () => modal.style.display = "none";
+
+// Confirmar código
+document.getElementById("confirmarCodigo").onclick = async () => {
+
+  const codigo = document.getElementById("codigoInput").value.trim();
+
+  if (!codigo) {
+    alert("Ingresa un código");
+    return;
+  }
+
+  // 🔥 Validar / activar invitación
+  const res = await fetch('/.netlify/functions/confirmar-asistencia', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ codigo })
+  });
+
+  const data = await res.json();
+
+  if (data.estado !== "ok") {
+  qrContainer.innerHTML = `<p style="color:red;">${data.mensaje}</p>`;
+  return;
+}
+
+// 🎉 Mensaje de éxito
+qrContainer.innerHTML = `
+  <p style="color:green; font-weight:bold;">
+    ✔ ${data.mensaje}
+  </p>
+  <p>Invitado/Familia: ${data.nombre}</p>
+`;
+
+  // 🔥 Generar QR
+  const link = `${window.location.origin}/checkin.html?codigo=${codigo}`;
+
+QRCode.toCanvas(link, { width: 200 }, function (error, canvas) {
+
+  qrContainer.appendChild(canvas);
+
+  const btnDescargar = document.createElement("button");
+  btnDescargar.textContent = "Descargar QR";
+
+  btnDescargar.onclick = () => {
+    const enlace = document.createElement("a");
+    enlace.download = `QR-${codigo}.png`;
+    enlace.href = canvas.toDataURL();
+    enlace.click();
+  };
+
+  qrContainer.appendChild(btnDescargar);
+});
+
+};
+</script>
 </body>
 
 </html>

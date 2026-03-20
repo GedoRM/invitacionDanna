@@ -1,0 +1,111 @@
+/* CONTENEDOR GENERAL */
+body {
+  font-family: 'Playfair Display', serif;
+  background: #f5f0eb;
+  margin: 0;
+}
+
+/* FORMULARIO */
+#formReserva {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+#formReserva input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 180px;
+  font-size: 14px;
+}
+
+#formReserva button {
+  background: #0c0c24;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#formReserva button:hover {
+  background: #98b7d4;
+  color: #0c0c24;
+}
+
+/* QR */
+#qrContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* TABLA */
+#tablaInvitaciones {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ENCABEZADO */
+#tablaInvitaciones thead {
+  background: #0c0c24;
+  color: white;
+}
+
+#tablaInvitaciones th {
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* FILAS */
+#tablaInvitaciones td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* HOVER */
+#tablaInvitaciones tbody tr:hover {
+  background: #f0f4f8;
+}
+
+/* STATUS */
+.status-ok {
+  color: green;
+  font-weight: bold;
+}
+
+.status-agotado {
+  color: red;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  #formReserva {
+    align-items: stretch;
+  }
+
+  #formReserva input,
+  #formReserva button {
+    width: 100%;
+  }
+
+  #tablaInvitaciones th,
+  #tablaInvitaciones td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+}

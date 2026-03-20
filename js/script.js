@@ -22,29 +22,7 @@ setInterval(()=>{
 
 let canvasQR = null;
 
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const nombre = document.getElementById("nombre").value;
-  const id = "XV-" + Math.floor(Math.random() * 100000);
-
-  const datosQR = `Invitado: ${nombre} | ID: ${id}`;
-
-  const qrDiv = document.getElementById("qrContainer");
-  qrDiv.innerHTML = "<h3>Tu código de acceso</h3>";
-
-  canvasQR = document.createElement("canvas");
-
-  QRCode.toCanvas(canvasQR, datosQR, {
-    width: 250,
-    margin: 2
-  }, function (error) {
-    if (!error) {
-      qrDiv.appendChild(canvasQR);
-      document.getElementById("descargarQR").style.display = "inline-block";
-    }
-  });
-});
 
 document.getElementById("descargarQR").addEventListener("click", function() {
   const link = document.createElement("a");
