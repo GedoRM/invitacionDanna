@@ -242,7 +242,7 @@ qrContainer.innerHTML = `
   // 🔥 Generar QR
   const link = `${window.location.origin}/checkin.html?codigo=${codigo}`;
 
-QRCode.toCanvas(link, { width: 200 }, function (error, canvas) {
+QRCode.toCanvas(link, { width: 100 }, function (error, canvas) {
 
   qrContainer.appendChild(canvas);
 
@@ -251,7 +251,7 @@ QRCode.toCanvas(link, { width: 200 }, function (error, canvas) {
 
   btnDescargar.onclick = () => {
     const enlace = document.createElement("a");
-    enlace.download = `QR-${codigo}.png`;
+    enlace.download = `QR-XV-DANNA-${codigo}.png`;
     enlace.href = canvas.toDataURL();
     enlace.click();
   };
