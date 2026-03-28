@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/Ornamento.png" type="image/png">
 </head>
 
 <body>
@@ -15,12 +16,7 @@
   <!-- BIENVENIDA -->
   <section class="hero">
     <div class="contenido">
-      <img src="images/quince1.jpg">
-      <h2>Danna</h2>
-      <div class="mensaje">
-        <p>"Con la bendición de mis padres</p>
-        <p>Te invito a celebrar conmigo este día tan especial"</p>
-      </div>
+      <img src="images/hero_desk.png">
       <audio controls loop autoplay>
         <source src="music/cinderella.mp3" type="audio/mpeg">
       </audio>
@@ -200,7 +196,6 @@ const modal = document.getElementById("modal");
 const btn = document.getElementById("btnRsvp");
 const cerrar = document.getElementById("cerrar");
 const qrContainer = document.getElementById("qrContainer");
-
 // Abrir modal
 btn.onclick = () => modal.style.display = "block";
 
@@ -245,7 +240,6 @@ qrContainer.innerHTML = `
 QRCode.toCanvas(link, { width: 100 }, function (error, canvas) {
 
   qrContainer.appendChild(canvas);
-
   const btnDescargar = document.createElement("button");
   btnDescargar.textContent = "Descargar QR";
 
