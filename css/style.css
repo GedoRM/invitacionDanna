@@ -374,6 +374,7 @@ section {
 .title-mesa {
   width: 100%;
   padding: 0 15px;
+  margin-bottom: 6% !important;
 
   .container-title-mesa {
     display: flex;

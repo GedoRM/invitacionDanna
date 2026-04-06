@@ -4,7 +4,7 @@ function scrollToSection(id){
 }
 
 // Cuenta regresiva
-const fechaEvento = new Date("March 15, 2026 17:00:00").getTime();
+const fechaEvento = new Date("May 01, 2026 18:00:00").getTime();
 const contador = document.getElementById("contador");
 
 setInterval(()=>{
