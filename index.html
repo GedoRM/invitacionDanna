@@ -54,7 +54,7 @@
             <span>Parroquia San Antonio de Padua, Samul&aacute;</span>
           </div>
         </div>
-        <a class="btn-ubicacion" href="https://maps.app.goo.gl/NAd8LKx56bitPqbr5">
+        <a class="btn-ubicacion" href="https://maps.app.goo.gl/NAd8LKx56bitPqbr5" target="_blank">
           <span class="iconPunto"></span>
           <span class="text-btnUbicacion">
             ¿C&oacute;mo llegar a la ceremonia?
@@ -84,7 +84,7 @@
             <span>Sal&oacute;n Georgina</span>
           </div>
         </div>
-        <a class="btn-ubicacion" href="https://maps.app.goo.gl/EP89Ne4nNf1Te4BcA">
+        <a class="btn-ubicacion" href="https://maps.app.goo.gl/EP89Ne4nNf1Te4BcA" target="_blank">
           <span class="iconPunto"></span>
           <span class="text-btnUbicacion">
             ¿C&oacute;mo llegar a la recepci&oacute;n?
@@ -104,7 +104,7 @@
     <span>Formal elegante</span>
     <span class="recomendado">*Se reserva el color azul celeste para la princesa de la noche.</span>
     <div class="colores">
-     
+
     </div>
   </section>
 
@@ -116,8 +116,9 @@
     </div>
     <div class="text-regalo">
       <span>
-        "Tu presencia es lo m&aacute;s importante para m&iacute;, pero si deseas obsequiarme algo, puedes colocarlo en el sobre que te entregar&aacute;n y 
-        depositarlo en el cofre que se encontrar&aacute; en la entrada" 
+        "Tu presencia es lo m&aacute;s importante para m&iacute;, pero si deseas obsequiarme algo, puedes colocarlo en
+        el sobre que te entregar&aacute;n y
+        depositarlo en el cofre que se encontrar&aacute; en la entrada"
       </span>
     </div>
     <div class="container-iconCofre">
@@ -125,92 +126,122 @@
     </div>
   </section>
 
-<!-- BOTÓN FLOTANTE -->
-<button id="btnRsvp">Confirmar asistencia</button>
+  <!-- BOTÓN FLOTANTE -->
+  <button id="btnRsvp">Confirmar asistencia</button>
 
-<!-- MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span id="cerrar">&times;</span>
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="cerrar">&times;</span>
 
-    <h2>Ingresa tu código</h2>
+      <h2>Ingresa tu código</h2>
 
-    <input type="text" id="codigoInput" placeholder="Código de invitación">
-    <button id="confirmarCodigo">Confirmar</button>
-
-    <div id="qrContainer"></div>
+      <input type="text" id="codigoInput" placeholder="Código de invitación">
+      <button id="confirmarCodigo">Confirmar</button>
+      <div id="msjConfirmation"></div>
+      <div id="downloadInvitation"></div>
+      <div id="plantilla">
+        <span class="title"></span>
+        <span class="pajaro"></span>
+        <span class="estrella1"></span>
+        <span class="estrella2"></span>
+        <span class="estrella3"></span>
+        <span class="estrella4"></span>
+        <span class="estrella5"></span>
+        <span class="estrella6"></span>
+        <span class="carroza"></span>
+        <span class="corona"></span>
+        <span class="reloj"></span>
+        <div id="qrContainer"></div>
+      </div>
+    </div>
   </div>
-</div>
 
   <script src="js/script.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-<script>
-const modal = document.getElementById("modal");
-const btn = document.getElementById("btnRsvp");
-const cerrar = document.getElementById("cerrar");
-const qrContainer = document.getElementById("qrContainer");
-// Abrir modal
-btn.onclick = () => modal.style.display = "block";
+  <script>
+    const modal = document.getElementById("modal");
+    const btn = document.getElementById("btnRsvp");
+    const cerrar = document.getElementById("cerrar");
+    const qrContainer = document.getElementById("qrContainer");
+    const msj = document.getElementById("msjConfirmation");
+    const btnDescarga = document.getElementById("downloadInvitation");
 
-// Cerrar modal
-cerrar.onclick = () => modal.style.display = "none";
+    btn.onclick = () => modal.style.display = "block";
 
-// Confirmar código
-document.getElementById("confirmarCodigo").onclick = async () => {
+    cerrar.onclick = () => modal.style.display = "none";
 
-  const codigo = document.getElementById("codigoInput").value.trim();
+    document.getElementById("confirmarCodigo").onclick = async () => {
 
-  if (!codigo) {
-    alert("Ingresa un código");
-    return;
-  }
+      const codigo = document.getElementById("codigoInput").value.trim();
 
-  // 🔥 Validar / activar invitación
-  const res = await fetch('/.netlify/functions/confirmar-asistencia', {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ codigo })
-  });
+      if (!codigo) {
+        alert("Ingresa un código");
+        return;
+      }
+      const res = await fetch('/.netlify/functions/confirmar-asistencia', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ codigo })
+      });
 
-  const data = await res.json();
+      const data = await res.json();
 
-  if (data.estado !== "ok") {
-  qrContainer.innerHTML = `<p style="color:red;">${data.mensaje}</p>`;
-  return;
-}
+      if (data.estado !== "ok") {
+        msj.innerHTML = `<p style="color:red;">${data.mensaje}</p>`;
+        return;
+      }
 
-// 🎉 Mensaje de éxito
-qrContainer.innerHTML = `
+      msj.innerHTML = `
   <p style="color:green; font-weight:bold;">
     ✔ ${data.mensaje}
   </p>
   <p>Invitado/Familia: ${data.nombre}</p>
 `;
 
-  // 🔥 Generar QR
-  const link = `${window.location.origin}/checkin.html?codigo=${codigo}`;
+      const link = `${window.location.origin}/checkin.html?codigo=${codigo}`;
 
-QRCode.toCanvas(link, { width: 100 }, function (error, canvas) {
+      QRCode.toCanvas(link, { width: 150 }, function (error, canvas) {
 
-  qrContainer.appendChild(canvas);
-  const btnDescargar = document.createElement("button");
-  btnDescargar.textContent = "Descargar QR";
+        const wrapper = document.createElement("div");
+        wrapper.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+        wrapper.style.display = "inline-block";
+        canvas.style.borderRadius = "6px";
+        wrapper.appendChild(canvas);
+        qrContainer.appendChild(wrapper);
 
-  btnDescargar.onclick = () => {
-    const enlace = document.createElement("a");
-    enlace.download = `QR-XV-DANNA-${codigo}.png`;
-    enlace.href = canvas.toDataURL();
-    enlace.click();
-  };
+        setTimeout(() => {
+          descargarImagen(codigo);
+        }, 300);
+      });
 
-  qrContainer.appendChild(btnDescargar);
-});
+      function descargarImagen(codigo) {
+        const plantilla = document.getElementById("plantilla");
 
-};
-</script>
+        // Mostrar temporalmente para captura
+        plantilla.style.opacity = "1";
+
+        html2canvas(plantilla, {
+          scale: 3,
+          useCORS: true
+        }).then(canvas => {
+
+          // Volver a ocultar
+          plantilla.style.opacity = "0";
+
+          const enlace = document.createElement("a");
+          enlace.download = `XV-DANNA-${codigo}.jpg`;
+          enlace.href = canvas.toDataURL("image/jpeg", 1.0);
+          enlace.click();
+        });
+      }
+
+    };
+  </script>
 </body>
 
 </html>

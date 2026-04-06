@@ -1,0 +1,57 @@
+h2 {
+    text-align: center;
+}
+
+.container-site {
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px;
+
+    a {
+        .gotohome {
+            background-image: url(../images/home.png);
+            width: 300px;
+            height: 300px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+    }
+    a {
+        .generateInvitation {
+            background-image: url(../images/ticket.jpeg);
+            width: 300px;
+            height: 300px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+    }
+
+    a {
+        .scannQr {
+            background-image: url(../images/scann.jpeg);
+            width: 300px;
+            height: 300px;
+            background-repeat: no-repeat;
+            background-size: contain;
+             border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 8px;
+
+
+        }
+    }
+
+}
+
+@media(min-width:300px) and (max-width:500px) {
+    .container-site {
+        flex-direction: column;
+    }
+}
