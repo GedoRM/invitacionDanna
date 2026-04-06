@@ -1,8 +1,13 @@
 :root {
-  --azul-serenity: rgb(152, 183, 212);
+  --dorado: #d89140;
+  --dorado-claro: #e4b950;
+  --lavanda: #bdc0ee;
+  --crema: #f3e1b3;
+  --azul: #4bb0dc;
+  --azul-suave: #94c4db;
+  --lila: #e1cae2;
+  --gris-claro: #e8e4e5;
   --azul-medianoche: rgb(12, 12, 36);
-  --plata: rgb(192, 192, 192);
-  --blanco-perla: rgb(245, 240, 235);
 }
 
 * {
@@ -11,7 +16,7 @@
 }
 
 body {
-  background: var(--blanco-perla);
+  background: var(--gris-claro);
   width: 70%;
   margin: auto;
 }
@@ -25,7 +30,7 @@ section {
 .hero {
   width: 95%;
   height: 100vh;
-  color: var(--plata);
+  color: var(--crema);
   margin: auto;
   position: relative;
 
@@ -138,7 +143,7 @@ section {
 
       span {
         font-family: "Great Vibes", normal;
-        color: var(--azul-serenity);
+        color: var(--azul);
         font-size: 46px;
       }
     }
@@ -155,7 +160,7 @@ section {
   position: relative;
 
   .card {
-    background-color: var(--blanco-perla);
+    background-color: var(--gris-claro);
     padding: 35px;
     min-width: 250px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -243,8 +248,8 @@ section {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: var(--azul-serenity);
-        border: 1px solid var(--azul-medianoche);
+        background-color: var(--azul-suave);
+        border: 1px solid var(--azul-suave);
         text-decoration: none;
         width: auto;
 
@@ -275,7 +280,7 @@ section {
   }
 }
 
-.evento, .dresscode, .title-mesa, .mesa{
+.evento, .dresscode{
   animation: show 10s linear;
   animation-timeline: view();
   animation-range: entry 0% cover 50%;
@@ -335,9 +340,9 @@ section {
   }
 
   .recomendado {
-    font-family: "Great Vibes", cursive;
-    color: var(--azul-serenity);
-    font-size: 32px;
+    font-family: "Playfair Display", serif;
+    color: var(--azul-medianoche);
+    font-size: 24px;
     margin-top: 20px;
     border-top: 1px solid #c0c0c0;
     width: 100%;
@@ -374,7 +379,6 @@ section {
 .title-mesa {
   width: 100%;
   padding: 0 15px;
-  margin-bottom: 6% !important;
 
   .container-title-mesa {
     display: flex;
@@ -416,6 +420,12 @@ section {
       color: var(--azul-medianoche);
       position: relative;
       margin: 0;
+    }
+  }
+  .container-iconCofre{
+    img{
+      width: 300px;
+      height: auto;
     }
   }
 }
