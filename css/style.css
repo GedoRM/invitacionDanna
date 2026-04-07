@@ -341,7 +341,7 @@
     height: 40px;
     background-repeat: no-repeat;
     background-size: cover;
-    top: 18%;
+    top: 17%;
     left: 36%;
     transform: rotate(45deg);
   }
@@ -450,7 +450,7 @@
   #infoPase{
     position: absolute;
     left: 25%;
-    top: 24%;
+    top: 23%;
     display: flex;
     flex-direction: column;
     align-items: center;
