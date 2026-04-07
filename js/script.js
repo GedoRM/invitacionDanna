@@ -78,3 +78,110 @@ async function validarQR(id) {
     }
     
     window.addEventListener("scroll", handleReveal);
+
+    window.addEventListener('load', function() {
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const imageSources = [
+            'images/XV_DANNA_PAJARO1.png',
+            'images/XV_DANNA_PAJARO2.png',
+            'images/XV_DANNA_ZAPATILLA.png',
+            'images/XV_DANNA_CARROSA.png',
+            'images/XV_DANNA_CORONA.png',
+            'images/XV_DANNA_DESTELLO.png',
+            'images/XV_DANNA_ORNAMENTO.png'
+        ];
+
+        let loadedImages = [];
+        let imagesProcessed = 0;
+
+        imageSources.forEach(src => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loadedImages.push(img);
+                checkAllImagesProcessed();
+            };
+            img.onerror = () => {
+                console.warn("Imagen no encontrada: " + src);
+                checkAllImagesProcessed();
+            };
+        });
+
+        function checkAllImagesProcessed() {
+            imagesProcessed++;
+            if (imagesProcessed === imageSources.length) {
+                init();
+            }
+        }
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(img) {
+                this.img = img;
+                this.init();
+            }
+
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                const scale = Math.random() * 0.12 + 0.08; 
+                this.width = this.img.width * scale;
+                this.height = this.img.height * scale;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.008;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                if (this.x < -this.width) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = -this.width;
+                if (this.y < -this.height) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = -this.height;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.globalCompositeOperation = 'screen'; 
+                ctx.drawImage(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            particles = [];
+            const copiesPerImage = 5; 
+            loadedImages.forEach(img => {
+                for(let i = 0; i < copiesPerImage; i++) {
+                    particles.push(new Particle(img));
+                }
+            });
+            animate();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+    });
