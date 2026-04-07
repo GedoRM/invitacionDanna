@@ -13,121 +13,101 @@
 
 <body>
 
-  <!-- BIENVENIDA -->
-  <section class="hero">
-    <div class="contenido">
-      <img src="images/hero_desk.png">
-      <audio controls loop autoplay>
-        <source src="music/cinderella.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </section>
+  <canvas id="background-canvas"></canvas>
 
-  <section class="cuentaRegresiva">
-    <div class="container-title-cuenta">
-      <span class="icon-time"></span>
-      <h2>Mis XV años</h2>
-      <span class="icon-time"></span>
+  <div class="stage" id="stage">
+    <div class="envelope" id="env" onclick="startReveal()">
+      <div class="flap"></div>
+      <div class="front"></div>
+      <div class="front-left"></div>
+      <div class="front-right"></div>
+      <div class="letter">
+        <img src="images/LOGO_OK.png" alt="Logo">
+        <p class="accent-font" style="color: var(--primary-gold); font-size: 1.6rem;">¡Bienvenido a mi cuento!</p>
+      </div>
     </div>
-    <div id="contador"></div>
-  </section>
+  </div>
 
-  <section class="evento">
-    <div class="card">
-      <h3>Ceremonia</h3>
-      <div class="cont-infoCeremonia">
-        <div class="infoCeremonia">
-          <div class="iconFecha"></div>
-          <div class="textInfo">
-            <span>Viernes 01 de mayo del 2026</span>
-          </div>
-        </div>
-        <div class="infoCeremonia">
-          <div class="iconHora"></div>
-          <div class="textInfo">
-            <span>17:00 hrs</span>
-          </div>
-        </div>
-        <div class="infoCeremonia">
-          <div class="iconLugar"></div>
-          <div class="textInfo">
-            <span>Parroquia San Antonio de Padua, Samul&aacute;</span>
-          </div>
-        </div>
-        <a class="btn-ubicacion" href="https://maps.app.goo.gl/NAd8LKx56bitPqbr5" target="_blank">
-          <span class="iconPunto"></span>
-          <span class="text-btnUbicacion">
-            ¿C&oacute;mo llegar a la ceremonia?
-          </span>
-        </a>
+  <div id="main-content">
+    <div class="reveal" style="position: relative; display: inline-block;">
+      <img src="images/XV_DANNA_CORONA.png" alt="Corona"
+        style="max-width: 60px; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); z-index: 5;">
+      <img src="images/LOGO_OK.png" alt="Logo XV Años" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+    </div>
+
+    <img src="images/XV_DANNA_ORNAMENTO.png" class="separator-ornament reveal" alt="separador">
+
+    <div class="section-card reveal">
+      <p style="font-style: italic; font-size: 1.0rem; color: var(--primary-gold);">
+        "Hay momentos que se sienten como un cuento... y el mío está por comenzar. <br>¡Acompáñame!"
+      </p>
+      <p style="margin-top: 20px; font-size: 1.0rem; font-weight: 600;">
+        Tengo el gran honor de invitarte a celebrar conmigo este día tan especial, donde mis sueños comienzan a hacerse
+        realidad.
+      </p>
+    </div>
+
+    <div class="reveal">
+      <h2 style="margin-bottom: 20px;">Falta muy poco</h2>
+      <div class="countdown" id="reloj">
+        <div class="time-box"><span id="days">00</span><small>Días</small></div>
+        <div class="time-box"><span id="hours">00</span><small>Hrs</small></div>
+        <div class="time-box"><span id="mins">00</span><small>Min</small></div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>Recepci&oacute;n</h3>
-      <div class="cont-infoCeremonia">
-        <div class="infoCeremonia">
-          <div class="iconFecha"></div>
-          <div class="textInfo">
-            <span>Viernes 01 de mayo del 2026</span>
-          </div>
+    <img src="images/Reloj720.png" class="section-icon" alt="Reloj">
+
+    <div class="section-card reveal">
+      <h2>Cuándo & Dónde</h2>
+      <p
+        style="font-size: 1.0rem; color: var(--blue-primary); font-weight: 600; font-family: var(--font-display); margin-bottom: 5px;">
+        01 de Mayo de 2026</p>
+
+      <div class="itinerary">
+        <div class="itinerary-item">
+          <img src="images/XV_DANNA_PAJARO1.png" class="section-icon" alt="Ceremonia">
+          <h3>Ceremonia</h3>
+          <p>17:00 Horas<br>Parroquia San Antonio de Padua, Samulá</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Parroquia+San+Antonio+de+Padua+Samula+Campeche"
+            target="_blank" class="btn btn-loc">📍 VER UBICACIÓN</a>
         </div>
-        <div class="infoCeremonia">
-          <div class="iconHora"></div>
-          <div class="textInfo">
-            <span>20:00 hrs</span>
-          </div>
+        <div class="itinerary-item">
+          <img src="images/XV_DANNA_CARROSA.png" class="section-icon" alt="Recepción">
+          <h3>Recepción</h3>
+          <p>20:00 Horas<br>Salón Georgina</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Georgina+salón+de+eventos+Campeche" target="_blank"
+            class="btn btn-loc">📍 VER UBICACIÓN</a>
         </div>
-        <div class="infoCeremonia">
-          <div class="iconLugar"></div>
-          <div class="textInfo">
-            <span>Sal&oacute;n Georgina</span>
-          </div>
-        </div>
-        <a class="btn-ubicacion" href="https://maps.app.goo.gl/EP89Ne4nNf1Te4BcA" target="_blank">
-          <span class="iconPunto"></span>
-          <span class="text-btnUbicacion">
-            ¿C&oacute;mo llegar a la recepci&oacute;n?
-          </span>
-        </a>
       </div>
     </div>
-  </section>
 
-  <section class="dresscode">
-    <div class="container-title-dressCode">
-      <span class="icon-dres"></span>
-      <h2>Dress Code</h2>
-      <span class="icon-dress"></span>
+    <div class="section-card reveal">
+      <img src="images/XV_DANNA_ZAPATILLA.png" class="section-icon" alt="Vestimenta">
+      <h3>Código de Vestimenta</h3>
+      <p style="font-size: 1.5rem; font-weight: 600; font-family: var(--font-display); color: var(--primary-gold);">
+        Formal</p>
+      <p style="font-size: 1.5rem; font-weight: 600; font-family: var(--font-display); color: var(--blue-primary);">Se
+        reserva el azul celeste para la quinceañera</p>
     </div>
-    <span class="iconDressCode"></span>
-    <span>Formal elegante</span>
-    <span class="recomendado">*Se reserva el color azul celeste para la princesa de la noche.</span>
-    <div class="colores">
 
+    <div class="section-card reveal">
+      <img src="images/XV_DANNA_CORONA.png" class="section-icon" alt="Regalo">
+      <h3>Lluvia de Sobres</h3>
+      <p style="font-size: 1.0rem; font-weight: 600;">"Tu presencia es lo m&aacute;s importante para m&iacute;,
+        pero si deseas obsequiarme algo, puedes colocarlo en el sobre que te entregar&aacute;n y
+        depositarlo en el cofre que se encontrar&aacute; en la entrada"</p>
     </div>
-  </section>
 
-  <section class="title-mesa">
-    <div class="container-title-mesa">
-      <span class="icon-mesa"></span>
-      <h2>Mesa de Regalo</h2>
-      <span class="icon-mesa"></span>
-    </div>
-    <div class="text-regalo">
-      <span>
-        "Tu presencia es lo m&aacute;s importante para m&iacute;, pero si deseas obsequiarme algo, puedes colocarlo en
-        el sobre que te entregar&aacute;n y
-        depositarlo en el cofre que se encontrar&aacute; en la entrada"
-      </span>
-    </div>
-    <div class="container-iconCofre">
-      <img src="images/cofreycarta.png">
-    </div>
-  </section>
+    <audio id="background-music" preload="auto" loop>
+      <source src="images/cancion.mp3" type="audio/mpeg">
+    </audio>
 
+
+    <p class="reveal accent-font" style="margin-top: 80px; color: var(--primary-gold);">¡Te espero!</p>
+  </div>
   <!-- BOTÓN FLOTANTE -->
-  <button id="btnRsvp">Confirmar asistencia</button>
+  <button class="btn-wa" id="btnRsvp">Confirmar asistencia</button>
 
   <!-- MODAL -->
   <div id="modal" class="modal">
@@ -153,6 +133,7 @@
         <span class="corona"></span>
         <span class="reloj"></span>
         <div id="qrContainer"></div>
+        <div id="infoPase"></div>
       </div>
     </div>
   </div>
@@ -170,6 +151,7 @@
     const qrContainer = document.getElementById("qrContainer");
     const msj = document.getElementById("msjConfirmation");
     const btnDescarga = document.getElementById("downloadInvitation");
+    const infoPase = document.getElementById("infoPase");
 
     btn.onclick = () => modal.style.display = "block";
 
@@ -213,6 +195,8 @@
         canvas.style.borderRadius = "6px";
         wrapper.appendChild(canvas);
         qrContainer.appendChild(wrapper);
+
+        infoPase.innerHTML = `<span>1 de mayo del 2026</span><br><span>Pase de acceso</span><span>${data.numPases} persona(s)</span>`;
 
         setTimeout(() => {
           descargarImagen(codigo);

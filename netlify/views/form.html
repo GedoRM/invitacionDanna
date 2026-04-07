@@ -12,7 +12,6 @@
   <input type="number" id="pases" placeholder="Pases" required>
   <button type="submit">Crear Reserva</button>
 </form>
-<div id="qrContainer"></div>
 
 <table border="1" width="100%" id="tablaInvitaciones">
   <thead>
@@ -37,22 +36,6 @@ document.getElementById("formReserva").addEventListener("submit", async (e) => {
   const res = await fetch('/.netlify/functions/crear-reserva', {
     method: 'POST',
     body: JSON.stringify({ nombre, pases })
-  });
-
-  const data = await res.json();
-
-  const id = data.id;
-
-  // Link que irá dentro del QR
-const link = `${window.location.origin}/checkin.html?codigo=${id}`;;
-
-  // Generar QR
-  const qrContainer = document.getElementById("qrContainer");
-  qrContainer.innerHTML = "";
-
-  QRCode.toCanvas(link, { width: 200 }, function (error, canvas) {
-    if (error) console.error(error);
-    qrContainer.appendChild(canvas);
   });
 
   cargarInvitaciones();

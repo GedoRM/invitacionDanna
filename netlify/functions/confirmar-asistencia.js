@@ -53,7 +53,8 @@ exports.handler = async (event) => {
           estado: "ok",
           mensaje: "Asistencia ya confirmada",
           nombre: invitacion.nombre_familia,
-          codigo: codigo
+          codigo: codigo,
+          numPases: invitacion.numero_pases
         })
       };
     }
@@ -80,7 +81,8 @@ exports.handler = async (event) => {
         estado: "ok",
         mensaje: "Asistencia confirmada con éxito",
         nombre: invitacion.nombre_familia,
-        codigo: codigo
+        codigo: codigo,
+        numPases: invitacion.numero_pases
       })
     };
 
