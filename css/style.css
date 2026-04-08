@@ -169,8 +169,8 @@
         }
         
         .section-icon {
-            max-width: 80px;
-            height: auto;
+            width: 100px;
+            height: 90px;
             margin: 0 auto 15px;
             display: block;
         }
@@ -227,7 +227,7 @@
             .envelope { width: 90vw; height: calc(90vw * 220 / 320); }
             .letter { height: calc(90vw * 200 / 320); }
             #main-content { padding: 40px 15px }
-            .section-icon { max-width: 60px; }
+            
             .separator-ornament { max-width: 150px; }
         }
         .italianno-regular {
